@@ -11,7 +11,7 @@ char* FLOT = "FLOT"; // float number ->3.5E+5, 3.5e5, 3.5e-5, 3.5e50
 char* OPER = "OPER"; // +, -, *, /,=
 char* SPEC = "SPEC"; // {, }, (, ), ;, ',,, :
 //				comment -> // ...............
-char* RESERVE[] = {"if","else","while","for","do","switch","case","int","float","double","char","struct","const","break","return","continue"}; 
+char* RESERVE[] = {"if","else","while","for","do","switch","case","int","float","double","char","struct","const","break","return","continue","sizeof"}; 
 /* --Bonus-- */
 const char* PRE = "PRE";
 
