@@ -100,7 +100,8 @@ int main(int argc, char* argv[]){
 											flag = 0;
 										}
 										else{
-											fseek(source,-1,SEEK_CUR);
+											// fseek(source,-1,SEEK_CUR);
+											ungetc(c,source);
 										}
 									}
 
@@ -109,7 +110,8 @@ int main(int argc, char* argv[]){
 							break;
 
 							default:
-								fseek(source,-1,SEEK_CUR); /* Move back one character */
+								//fseek(source,-1,SEEK_CUR); /* Move back one character */
+								ungetc(c,source);
 								/* New Token */
 								current = createNode( newToken(lnum,OPER,"/") );
 								if(( head = insertNode( head, current ) )== NULL){
@@ -163,7 +165,8 @@ int main(int argc, char* argv[]){
 								break;
 
 								default:
-									fseek(source,-1,SEEK_CUR);
+									//fseek(source,-1,SEEK_CUR);
+									ungetc(c,source);
 									operand = (char *)malloc(textLen+1); /* alloc enough memory of string dynamically */
 									memset(operand,'\0',textLen+1);
 									strncpy(operand,buf,textLen);
@@ -223,7 +226,8 @@ int main(int argc, char* argv[]){
 								/* Any case 3.01.456 or 3.5e04 */
 								case '.':
 									if(numType > 0){
-										fseek(source,-1,SEEK_CUR);
+										//fseek(source,-1,SEEK_CUR);
+										ungetc(c,source);
 										number = (char *)malloc(textLen+1); /* alloc enough memory of string dynamically */
 										memset(number,'\0',textLen+1);
 										strncpy(number,buf,textLen);
@@ -250,7 +254,8 @@ int main(int argc, char* argv[]){
 										textLen++;
 									}
 									else{
-										fseek(source,-1,SEEK_CUR);
+										//fseek(source,-1,SEEK_CUR);
+										ungetc(c,source);
 										number = (char *)malloc(textLen+1); /* alloc enough memory of string dynamically */
 										memset(number,'\0',textLen+1);
 										strncpy(number,buf,textLen);
@@ -275,7 +280,8 @@ int main(int argc, char* argv[]){
 										textLen++;
 									}
 									else{
-										fseek(source,-1,SEEK_CUR);
+										//fseek(source,-1,SEEK_CUR);
+										ungetc(c,source);
 										number = (char *)malloc(textLen+1); /* alloc enough memory of string dynamically */
 										memset(number,'\0',textLen+1);
 										strncpy(number,buf,textLen);
@@ -293,7 +299,8 @@ int main(int argc, char* argv[]){
 								break;
 
 								default:
-									fseek(source,-1,SEEK_CUR);
+									//fseek(source,-1,SEEK_CUR);
+									ungetc(c,source);
 									number = (char *)malloc(textLen+1); /* alloc enough memory of string dynamically */
 									memset(number,'\0',textLen+1);
 									strncpy(number,buf,textLen);
@@ -395,7 +402,8 @@ int main(int argc, char* argv[]){
 						{
 							char* word;
 							int* wordType;
-							fseek(source,-1,SEEK_CUR); // move back 1 character
+							//fseek(source,-1,SEEK_CUR); // move back 1 character
+							ungetc(c,source);
 							wordType = keyword(source,buf);
 							word = (char*)malloc(wordType[1]+1);
 							memset(word,'\0',wordType[1]+1);
@@ -619,7 +627,8 @@ int* keyword(FILE* fp,char target[]){
 			break;
 
 			default:
-				fseek(fp,-1,SEEK_CUR);
+				//fseek(fp,-1,SEEK_CUR);
+				ungetc(c,fp);
 				flag = 0;
 			break;
 		}
