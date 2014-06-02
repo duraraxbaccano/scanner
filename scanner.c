@@ -210,6 +210,7 @@ int main(int argc, char* argv[]){
 							}
 
 							switch(c){
+								/* Any case 3 3.14 31.4 3.14e1 3.14e-1 3.14e123+1 */
 								case '0':
 								case '1':
 								case '2':
@@ -220,6 +221,8 @@ int main(int argc, char* argv[]){
 								case '7':
 								case '8':
 								case '9':
+									if(numType == 2)
+										numType = 3;
 									buf[textIdx+textLen]=c;
 									textLen++;
 								break;
